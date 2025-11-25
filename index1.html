@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Birthday Wish</title>
+
+<style>
+    body{
+        margin:0;
+        padding:0;
+        font-family:'Poppins', sans-serif;
+        text-align:center;
+        overflow:hidden;
+        background: linear-gradient(120deg, #ffb6e6, #ffd6f5, #ff9bd8);
+        background-size: 300% 300%;
+        animation: bgMove 10s infinite alternate ease-in-out;
+        position:relative;
+    }
+
+    @keyframes bgMove {
+        0%{background-position: 0% 50%;}
+        100%{background-position: 100% 50%;}
+    }
+
+    /* Glitter */
+    .glitter{
+        position:absolute;
+        width:6px;
+        height:6px;
+        background:white;
+        border-radius:50%;
+        opacity:0.8;
+        animation:sparkle 2.5s infinite ease-in-out;
+        box-shadow:0 0 8px white;
+    }
+    @keyframes sparkle{
+        0%{transform:scale(0.4);opacity:0.6;}
+        50%{transform:scale(1.4);opacity:1;}
+        100%{transform:scale(0.4);opacity:0.6;}
+    }
+
+    /* Hearts */
+    .heart{
+        position:absolute;
+        color:#ff2e83;
+        font-size:25px;
+        animation:floatUp 5s linear infinite;
+        opacity:0.8;
+    }
+    @keyframes floatUp{
+        0%{transform:translateY(0) scale(1);opacity:1;}
+        100%{transform:translateY(-120vh) scale(1.8);opacity:0;}
+    }
+
+    /* Balloons */
+    .balloon{
+        position:absolute;
+        font-size:45px;
+        animation:balloonUp 6s infinite ease-in-out;
+    }
+    @keyframes balloonUp{
+        0%{transform:translateY(100vh);}
+        100%{transform:translateY(-120vh);}
+    }
+
+    /* Page System */
+    .page{
+        display:none;
+        padding:40px 20px;
+        position:relative;
+        z-index:5;
+    }
+    .active{display:block;}
+
+    /* Page 1 */
+    .icon-box{
+        margin-top:120px;
+        display:flex;
+        justify-content:center;
+        animation:fadeIn 2s;
+    }
+    @keyframes fadeIn{
+        0%{opacity:0;transform:scale(0.8);}
+        100%{opacity:1;transform:scale(1);}
+    }
+    .icon{
+        width:190px;
+        height:190px;
+        background:white;
+        border-radius:50%;
+        box-shadow:0 10px 25px rgba(255,105,180,0.4);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        font-size:85px;
+        cursor:pointer;
+        animation:pulse 2s infinite;
+    }
+    @keyframes pulse{
+        0%{transform:scale(1);}
+        50%{transform:scale(1.08);}
+        100%{transform:scale(1);}
+    }
+
+    /* Photo Frame */
+    .photo-frame{
+        width:230px;
+        height:230px;
+        border:6px solid #ff96cc;
+        border-radius:20px;
+        overflow:hidden;
+        margin:0 auto 25px auto;
+        box-shadow:0 0 20px rgba(255,50,150,0.5);
+        animation:frameGlow 3s infinite alternate;
+    }
+    .photo-frame img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
+    @keyframes frameGlow{
+        0%{box-shadow:0 0 15px rgba(255,80,180,0.4);}
+        100%{box-shadow:0 0 30px rgba(255,50,150,0.8);}
+    }
+
+    /* Page 2 Box */
+    .birthday-box{
+        max-width:750px;
+        margin:0 auto;
+        background:#ffffffd1;
+        padding:35px;
+        border-radius:18px;
+        backdrop-filter:blur(10px);
+        box-shadow:0 10px 35px rgba(255,105,180,0.3);
+        animation:fadeIn 1.2s;
+    }
+
+    h1{color:#ff2e83;}
+    p{
+        font-size:19px;
+        line-height:1.8;
+        color:#444;
+    }
+    .back-btn{
+        padding:12px 25px;
+        background:#ff2e83;
+        color:white;
+        border:none;
+        border-radius:12px;
+        cursor:pointer;
+        font-size:16px;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_36b5dcf75f.mp3?filename=romantic-piano-ambient-124841.mp3">
+</audio>
+
+<script>
+/* Glitter */
+for(let i=0;i<55;i++){
+    let g=document.createElement("div");
+    g.className="glitter";
+    g.style.left=Math.random()*100+"vw";
+    g.style.top=Math.random()*100+"vh";
+    g.style.animationDelay=Math.random()*2+"s";
+    document.body.appendChild(g);
+}
+
+/* Hearts */
+setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💗";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(4+Math.random()*3)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+},600);
+
+/* Balloons */
+const balloons=["🎈","🎉","🎈","💗"];
+setInterval(()=>{
+    let b=document.createElement("div");
+    b.className="balloon";
+    b.innerHTML=balloons[Math.floor(Math.random()*balloons.length)];
+    b.style.left=Math.random()*100+"vw";
+    b.style.animationDuration=(5+Math.random()*4)+"s";
+    document.body.appendChild(b);
+    setTimeout(()=>b.remove(),9000);
+},1500);
+</script>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+    <h2 style="color:#ff2e83;">A Special Birthday Surprise for Eshaal 🎀</h2>
+    <div class="icon-box">
+        <div class="icon" onclick="openPage2()">🎂</div>
+    </div>
+    <p style="color:#ff4f9c;">Tap the cake to open your birthday surprise!</p>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+    <div class="birthday-box">
+
+        <!-- PHOTO FRAME -->
+        <div class="photo-frame">
+            <img src="birrh.avif" alt="birthday precious">
+        </div>
+
+        <h1>🎉 Happy Birthday, Dear Eshaal 🎉</h1>
+        <p>
+            Today is the beautiful day when someone truly special came into this world.  
+            Your smile, your voice, your heart — everything about you is pure magic.  
+            You bring joy, softness, and warmth wherever you go.  
+            <br><br>
+            I wish you a year full of love, happiness, success, and sweet surprises.  
+            May every dream you hold close come true and may every moment of your life  
+            be filled with beauty and light.  
+            <br><br>
+            You are precious, unique, and unforgettable.  
+            Never stop shining, never stop smiling — the world is better because of you, Eshaal.  
+            <br><br>
+            Happy Birthday once again, my dear. 🎀✨💗  
+        </p>
+
+        <button class="back-btn" onclick="goBack()">Go Back</button>
+    </div>
+</div>
+
+<script>
+function openPage2(){
+    document.getElementById("page1").classList.remove("active");
+    document.getElementById("page2").classList.add("active");
+
+    let m=document.getElementById("music");
+    m.volume=0.5;
+    m.play();
+}
+
+function goBack(){
+    document.getElementById("page2").classList.remove("active");
+    document.getElementById("page1").classList.add("active");
+}
+</script>
+
+</body>
+</html>
